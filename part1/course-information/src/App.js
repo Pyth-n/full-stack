@@ -1,6 +1,30 @@
+const Header = () => {
+  const course = 'Half Stack application development'
+
+  return (
+    <>
+      <h1>
+        {course}
+      </h1>
+    </>
+  )
+}
+
+const Content = () => {
+  return (
+    <>
+    </>
+  )
+}
+
+const Total = () => {
+  return (
+    <>
+    </>
+  )
+}
 
 function App() {
-  const course = 'Half Stack application development'
   const part1 = 'Fundamentals of React'
   const exercises = 10
   const part2 = 'Using props to pass data'
@@ -10,15 +34,15 @@ function App() {
 
   return (
     <div>
-      <h1>{course}</h1>
+      <Header />
       <p>
         {part1} {exercises}
       </p>
-      <h1>{course}</h1>
+      <Header />
       <p>
         {part2} {exercise2}
       </p>
-      <h1>{course}</h1>
+      <Header />
       <p>
         {part3} {exercise3}
       </p>
