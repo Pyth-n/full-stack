@@ -46,9 +46,7 @@ function App() {
     <div>
       <Header course={course}/>
       <Content part={part1} exercises={exercise1} />
-      <Header course={course}/>
       <Content part={part2} exercises={exercise2} />
-      <Header course={course}/>
       <Content part={part3} exercises={exercise3} />
       <Total exercises={[exercise1, exercise2, exercise3]} />
     </div>
