@@ -3,13 +3,17 @@ import React, { useState } from 'react'
 const App = () => {
   const [ counter, setCounter ] = useState(0)
 
-  setTimeout(
-    () => setCounter(counter + 1),
-    1000
-  )
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter + 1)
+  const reset = () => setCounter(0)
+
   return(
     <div>
       {counter}
+      <br />
+      <button onClick={decreaseByOne}>minus</button>
+      <button onClick={reset}>reset</button>
+      <button onClick={increaseByOne}>plus</button>
     </div>
   )
 }
