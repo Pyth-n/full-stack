@@ -1,23 +1,17 @@
-const Hello = ({ name, age }) => {
-  const bornYear = () => new Date().getFullYear() - age
+import React, { useState } from 'react'
 
-  return (
+const App = () => {
+  const [ counter, setCounter ] = useState(0)
+
+  setTimeout(
+    () => setCounter(counter + 1),
+    1000
+  )
+  return(
     <div>
-      <p>Hello {name}, you are {age} years old</p>
-      <p>
-        So you were probably born in {bornYear()}
-      </p>
+      {counter}
     </div>
   )
 }
 
-function App() {
-  console.log('hello from component')
-  return (
-    <>
-      <Hello name="dave" age={2050-2000}/>
-    </>
-  );
-}
-
-export default App;
+export default App
