@@ -63,7 +63,7 @@ function App() {
     <div>
       <Header course={course}/>
       <Content part={[part1, part2, part3]}/>
-      {/* <Total exercises={[exercise1, exercise2, exercise3]} /> */}
+      <Total exercises={[part1.exercises, part2.exercises, part3.exercises]} />
     </div>
   );
 }
