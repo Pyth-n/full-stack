@@ -4,6 +4,7 @@ const App = () => {
   const [ left, setLeft ] = useState(0)
   const [ right, setRight ] = useState(0)
   const [ allClicks, setAll ] = useState([])
+  const [ counter, setCounter ] = useState(0)
 
   const handleLeftClick = () => {
     setAll(allClicks.concat('L'))
@@ -15,6 +16,10 @@ const App = () => {
     setRight(right + 1)
   }
 
+  const setCounterTo = (value) => () => {
+    setCounter(value)
+  }
+
   return(
     <div>
       {left}
@@ -22,6 +27,9 @@ const App = () => {
       <Button onClick={handleRightClick} text='right' />
       {right}
       <History allClicks={allClicks} />
+      <br />
+      {counter}
+      <Button onClick={setCounterTo(200)} text='200' />
     </div>
   )
 }
