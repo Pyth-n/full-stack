@@ -39,12 +39,14 @@ const Statistics = (props) => {
   for (let i = 0; i < props.votes.length; i++) {
     sum += props.votes[i]
   }
+  if (sum == 0) return <></>
   console.log('sum', sum)
   let average = (props.votes[0] - props.votes[2]) / sum
   let positive = (props.votes[0] / sum) * 100
   console.log(average)
   return (
     <>
+      <br />
       <br />
       all {sum}
       <br />
