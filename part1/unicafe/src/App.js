@@ -43,16 +43,24 @@ const Statistics = (props) => {
   console.log(average)
   return (
     <>
-      good {props.votes[0]} <br />
-      neutral {props.votes[1]} <br />
-      bad {props.votes[2]}
-      <br />
+      <StatisticLine text='good' value={props.votes[0]} />
+      <StatisticLine text='neutral' value={props.votes[1]} />
+      <StatisticLine text='bad' value={props.votes[2]} />
       <br />
       all {sum}
       <br />
       average {average}
       <br />
       positive {positive} %
+    </>
+  )
+}
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <>
+      {text} {value}
+      <br />
     </>
   )
 }
