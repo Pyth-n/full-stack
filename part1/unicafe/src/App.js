@@ -29,7 +29,29 @@ const Display = ({ votes }) => {
       good {votes[0]} <br />
       neutral {votes[1]} <br />
       bad {votes[2]}
+      <Statistics votes={votes} />
     </div>
+  )
+}
+
+const Statistics = (props) => {
+  let sum = 0
+  for (let i = 0; i < props.votes.length; i++) {
+    sum += props.votes[i]
+  }
+  console.log('sum', sum)
+  let average = (props.votes[0] - props.votes[2]) / sum
+  let positive = (props.votes[0] / sum) * 100
+  console.log(average)
+  return (
+    <>
+      <br />
+      all {sum}
+      <br />
+      average {average}
+      <br />
+      positive {positive} %
+    </>
   )
 }
 
