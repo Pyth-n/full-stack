@@ -26,9 +26,6 @@ const Header = ({ text }) => <div><h1>{text}</h1></div>
 const Display = ({ votes }) => {
   return (
     <div>
-      good {votes[0]} <br />
-      neutral {votes[1]} <br />
-      bad {votes[2]}
       <Statistics votes={votes} />
     </div>
   )
@@ -39,13 +36,16 @@ const Statistics = (props) => {
   for (let i = 0; i < props.votes.length; i++) {
     sum += props.votes[i]
   }
-  if (sum == 0) return <></>
+  if (sum == 0) return <>No feedback given</>
   console.log('sum', sum)
   let average = (props.votes[0] - props.votes[2]) / sum
   let positive = (props.votes[0] / sum) * 100
   console.log(average)
   return (
     <>
+      good {props.votes[0]} <br />
+      neutral {props.votes[1]} <br />
+      bad {props.votes[2]}
       <br />
       <br />
       all {sum}
