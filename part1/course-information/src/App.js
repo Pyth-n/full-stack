@@ -29,12 +29,9 @@ const Part = (props) => {
   )
 }
 
-const Total = (props) => {
-  let total = 0
-
-  for (let i = 0; i < props.parts.length; i++) {
-    total += props.parts[i].exercises
-  }
+const Total = ({ parts }) => {
+  let total = parts.reduce((t, c) => t + c.exercises, 0)
+  
   return (
     <>
       <strong>
