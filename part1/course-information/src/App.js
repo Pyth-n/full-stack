@@ -37,9 +37,11 @@ const Total = (props) => {
   }
   return (
     <>
-      <p>
-        Total exercises: {total}
-      </p>
+      <strong>
+        <p>
+          Total exercises: {total}
+        </p>
+      </strong>
     </>
   )
 }
