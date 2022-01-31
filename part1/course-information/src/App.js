@@ -64,6 +64,10 @@ function App() {
     ]
   }
 
+  return <Course course={course} />
+}
+
+const Course = ({ course }) => {
   return (
     <div>
       <Header course={course.name}/>
