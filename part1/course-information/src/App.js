@@ -30,7 +30,6 @@ const Part = (props) => {
 }
 
 const Total = (props) => {
-  console.log(props.parts[0])
   let total = 0
 
   for (let i = 0; i < props.parts.length; i++) {
