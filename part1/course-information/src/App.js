@@ -1,30 +1,26 @@
-const Header = ({ courses }) => {
-  console.log(courses)
+const Header = ({ name }) => {
+  return (
+    <h1>
+      {name}
+    </h1>
+  )
+}
+
+const Content = ({ parts }) => {
   return (
     <>
-        {courses.map(x => 
-          <h1>{x.toString()}</h1>
-        )}
+      {parts.map(x => <Part name={x.name} exercise={x.exercises} key={x.id} />
+      )}
     </>
   )
 }
 
-const Content = (props) => {
-  const part = props.part
-  return (
-    <>
-      <Part part={part[0].name} exercise={part[0].exercises} />
-      <Part part={part[1].name} exercise={part[1].exercises} />
-      <Part part={part[2].name} exercise={part[2].exercises} />
-    </>
-  )
-}
-
-const Part = (props) => {
+const Part = ({ name, exercise }) => {
+  console.log(name, exercise)
   return (
     <>
       <p>
-        {props.part}: {props.exercise}
+        {name}: {exercise}
       </p>
     </>
   )
@@ -45,7 +41,7 @@ const Total = ({ parts }) => {
 }
 
 function App() {
-  const course = [
+  const courses = [
     {
       name: 'Half Stack application development',
       id: 1,
@@ -90,18 +86,20 @@ function App() {
     }
   ]
 
-  return <Course course={course} />
+  return (
+    <>
+      {courses.map(x => 
+        <Course course={x} key={x.id} />
+      )}
+    </>
+  )
 }
 
 const Course = ({ course }) => {
-  let names = course.map(x => x.name)
-  let parts = course.map(x => x.parts)
-  
   return (
     <div>
-      {<Header courses={names}/>
-      /*<Content part={course.parts}/>
-      <Total parts={course.parts} /> */}
+      <Header name={course.name} />
+      <Content parts={course.parts} />
     </div>
   );
 }
