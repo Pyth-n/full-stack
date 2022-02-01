@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import Person from './components/Person'
 
 function App() {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number: '123-456-7890' }
   ])
   const [newName, setNewName] = useState('Ada Lovelace')
+  const [newNumber, setNewNumber] = useState('000-555-9292')
 
   const handleInputNewName = (event) => {
     setNewName(event.target.value)
@@ -36,12 +38,16 @@ function App() {
           name: <input value={newName} onChange={handleInputNewName} />
         </div>
         <div>
+          number: <input />
+        </div>
+        <div>
           <button type='submit' onClick={handleAddName}>
             add
           </button>
         </div>
       </form>
       <h2>Numbers</h2>
+      {persons.map(x => <Person key={x.name} name={x.name} number={x.number} />)}
       <div>
         debug: {newName}
       </div>
