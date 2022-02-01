@@ -3,7 +3,10 @@ import Person from './components/Person'
 
 function App() {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '123-456-7890' }
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
   ])
   const [newName, setNewName] = useState('Ada Lovelace')
   const [newNumber, setNewNumber] = useState('000-555-9292')
@@ -22,7 +25,8 @@ function App() {
     if (isNameAvailable(newName)) {
       const personObject = {
         name: newName,
-        number: newNumber
+        number: newNumber,
+        id: persons.length + 1
       }
       setPersons(persons.concat(personObject))
     }
@@ -52,13 +56,7 @@ function App() {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(x => <Person key={x.name} name={x.name} number={x.number} />)}
-      <div>
-        debug: {newName} {newNumber}
-      </div>
-      <div>
-        {persons.map(x => x.name)}
-      </div>
+      {persons.map(x => <Person key={x.id} name={x.name} number={x.number} />)}
     </div>
   );
 }
