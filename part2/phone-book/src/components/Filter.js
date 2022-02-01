@@ -1,12 +1,30 @@
 import { useState } from 'react'
+import Person from './Person'
 
 const Filter = ({ persons }) => {
   const [nameFilter, setNameFilter] = useState('')
-  const handleChange = (event) => setNameFilter(event.target.value)
+  const [results, setResults] = useState([])
+  
+  const handleChange = (event) => {
+    setNameFilter(event.target.value)
+    filter(event.target.value)
+  }
+
+  const filter = (name) => {
+    setResults(persons.filter((person) => {
+      return person.name.toLowerCase().includes(name.toLowerCase())
+    }))
+  }
+
   return (
-    <form>
-      filter shown with <input onChange={handleChange} value={nameFilter}/>
-    </form>
+    <div>
+        <form>
+          filter shown with <input onChange={handleChange} value={nameFilter}/>
+        </form>
+        <div>
+          {results.map(person => <Person key={person.id} name={person.name} number={person.number} />)}
+        </div>
+    </div>
   )
 }
 
