@@ -39,6 +39,9 @@ function App({ data }) {
       <form onSubmit={addNote}>
           <input value={newNote} onChange={handleNewNote} />
           <button type='submit'>save</button>
+          <button type='button' onClick={() => setShowAll(!showAll)}>
+            {showAll ? 'show important' : 'show all'}
+          </button>
       </form>
     </div>
   );
