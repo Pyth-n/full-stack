@@ -12,12 +12,17 @@ function App() {
     setNewName(event.target.value)
   }
 
+  const handleInputNewNumber = (event) => {
+    setNewNumber(event.target.value)
+  }
+
   const handleAddName = (event) => {
     event.preventDefault()
     
     if (isNameAvailable(newName)) {
       const personObject = {
-        name: newName
+        name: newName,
+        number: newNumber
       }
       setPersons(persons.concat(personObject))
     }
@@ -38,7 +43,7 @@ function App() {
           name: <input value={newName} onChange={handleInputNewName} />
         </div>
         <div>
-          number: <input />
+          number: <input value={newNumber} onChange={handleInputNewNumber} />
         </div>
         <div>
           <button type='submit' onClick={handleAddName}>
@@ -49,7 +54,7 @@ function App() {
       <h2>Numbers</h2>
       {persons.map(x => <Person key={x.name} name={x.name} number={x.number} />)}
       <div>
-        debug: {newName}
+        debug: {newName} {newNumber}
       </div>
       <div>
         {persons.map(x => x.name)}
