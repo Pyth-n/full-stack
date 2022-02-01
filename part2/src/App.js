@@ -4,6 +4,7 @@ import Note from "./components/Note";
 function App({ data }) {
   const [notes, setNotes] = useState(data)
   const [newNote, setNewNote] = useState('new note...')
+  const [showAll, setShowAll] = useState(true)
 
   const addNote = (event) => {
     event.preventDefault()
@@ -23,11 +24,15 @@ function App({ data }) {
     console.log(event.target.value)
     setNewNote(event.target.value)
   }
+
+  const notesToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true)
   return (
     <div>
       <h1>Notes</h1>
       <ul>
-        {data.map(data => 
+        {notesToShow.map(data => 
           <Note key={data.id} content={data.content} />
         )}
       </ul>
