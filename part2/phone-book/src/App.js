@@ -6,17 +6,26 @@ function App() {
   ])
   const [newName, setNewName] = useState('Ada Lovelace')
 
-  const handleNewName = (event) => {
+  const handleInputNewName = (event) => {
     setNewName(event.target.value)
   }
 
   const handleAddName = (event) => {
     event.preventDefault()
-
-    const personObject = {
-      name: newName
+    
+    if (isNameAvailable(newName)) {
+      const personObject = {
+        name: newName
+      }
+      setPersons(persons.concat(personObject))
     }
-    setPersons(persons.concat(personObject))
+    else {
+      alert(newName + ' is not available')
+    }
+  }
+
+  const isNameAvailable = (name) => {
+    return !persons.some((x) => x.name === name)
   }
 
   return (
@@ -24,7 +33,7 @@ function App() {
       <h2>Phonebook</h2>
       <form>
         <div>
-          name: <input value={newName} onChange={handleNewName} />
+          name: <input value={newName} onChange={handleInputNewName} />
         </div>
         <div>
           <button type='submit' onClick={handleAddName}>
@@ -35,6 +44,9 @@ function App() {
       <h2>Numbers</h2>
       <div>
         debug: {newName}
+      </div>
+      <div>
+        {persons.map(x => x.name)}
       </div>
     </div>
   );
