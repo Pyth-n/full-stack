@@ -8,7 +8,12 @@ function App() {
   const inputHandle = (e) => setSearch(e.target.value)
 
   useEffect(() => {
-    console.log('nothing lol')
+    axios
+      .get('https://restcountries.com/v3.1/all')
+      .then(res => {
+        console.log(res.data)
+        setCountries(res.data)
+      })
   }, [])
 
   return (
