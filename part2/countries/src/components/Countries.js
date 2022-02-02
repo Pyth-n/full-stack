@@ -1,8 +1,18 @@
+import Country from "./Country"
+
 const Countries = ({ countries }) => {
+  const isOnly = countries.length === 1
   return (
-    <>
-      {countries.map(c => <p>{c.name.common}</p>)}
-    </>
+    <div>
+      {!isOnly &&
+        <p>not lonely</p>
+      }
+      {countries.map(c => {
+        return <Country key={c.name.common}
+          name={c.name.common}
+          />
+      })}
+    </div>
   )
 }
 
