@@ -25,7 +25,7 @@ const notes = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data={notes}/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
