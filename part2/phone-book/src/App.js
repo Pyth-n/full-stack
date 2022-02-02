@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Person from './components/Person'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -8,6 +9,14 @@ function App() {
   const [newName, setNewName] = useState('Ada Lovelace')
   const [newNumber, setNewNumber] = useState('000-555-9292')
 
+  useEffect(() => {
+    axios
+    .get('http://localhost:3001/persons')
+    .then(res => {
+      setPersons(res.data)
+    })
+  }, [])
+  
   const handleInputNewName = (event) => {
     setNewName(event.target.value)
   }
