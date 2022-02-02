@@ -1,7 +1,9 @@
+import FindForm from "./components/FindForm";
+
 function App() {
   return (
     <div>
-      <p>hello worlds</p>
+      <FindForm />
     </div>
   );
 }
