@@ -78,6 +78,7 @@ function App() {
             {showAll ? 'show important' : 'show all'}
           </button>
       </form>
+      <Footer />
     </div>
   );
 }
@@ -88,6 +89,21 @@ const Notification = ({ message }) => {
   return (
     <div className='error'>
       {message}
+    </div>
+  )
+}
+
+const Footer = () => {
+  const footerStyle = {
+    color: 'green',
+    fontStyle: 'italic',
+    fontSize: 16
+  }
+
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>Note app &copy;</em>
     </div>
   )
 }
