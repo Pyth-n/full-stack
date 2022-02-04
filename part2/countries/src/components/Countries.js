@@ -7,13 +7,14 @@ const Countries = ({ countries }) => {
   return (
     <div>
       {!isOnly &&
-        <p>lonely</p>
-      }
-      {countries.map(c => {
-        return <Country key={c.name.common}
-          name={c.name.common}
-          />
+        countries.map(c => {
+          return <Country key={c.name.common}
+            name={c.name.common}
+            />
       })}
+      {isOnly &&
+        <CountryInfo country={country} />
+      }
     </div>
   )
 }
