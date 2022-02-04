@@ -14,15 +14,20 @@ function App() {
       .then(res => {
         console.log(res.data)
         setCountries(res.data)
+        setResults(countries)
       })
   }, [])
 
   const inputSearchHandler = (e) => {
     setSearch(e.target.value)
-    setResults(countries.filter(country => {
-
-      return country.name.common.toLowerCase().includes(search.toLowerCase())
-    }))
+    if (e.target.value == '') {
+      setResults(countries)
+    }
+    else {
+      setResults(countries.filter(country => {
+        return country.name.common.toLowerCase().includes(search.toLowerCase())
+      }))
+    }
   }
 
   return (
