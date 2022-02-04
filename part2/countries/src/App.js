@@ -32,9 +32,15 @@ function App() {
 
   return (
     <div>
-      {results.length}
       <FindForm countries={countries} onChange={inputSearchHandler} />
-      <Countries countries={results} />
+      {results.length > 10 &&
+        <p>Too many matches, specify another filter</p>
+      }
+      {results.length <= 10 &&
+      <>
+        <Countries countries={results} />
+      </>
+      }
     </div>
   );
 }
