@@ -7,6 +7,7 @@ function App() {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('new note...')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('some error happened')
 
   const addNote = (event) => {
     event.preventDefault()
@@ -77,6 +78,16 @@ function App() {
       </form>
     </div>
   );
+}
+
+const Notification = ({ message }) => {
+  if (message === null) return null
+
+  return (
+    <div className='error'>
+      {message}
+    </div>
+  )
 }
 
 export default App;
