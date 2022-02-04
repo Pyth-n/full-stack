@@ -4,9 +4,8 @@ import Countries from "./components/Countries";
 import axios from 'axios'
 
 function App() {
-  const [search, setSearch] = useState('')
   const [countries, setCountries] = useState([])
-  const inputHandle = (e) => setSearch(e.target.value)
+  const [results, setResults] = useState([])
 
   useEffect(() => {
     axios
@@ -19,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <FindForm search={search} onChange={inputHandle}/>
+      <FindForm countries={countries} />
       <Countries countries={countries} />
     </div>
   );
