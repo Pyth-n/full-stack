@@ -10,6 +10,7 @@ function App() {
   const [newName, setNewName] = useState('A somebody')
   const [newNumber, setNewNumber] = useState('000-555-9292')
   const [successMesage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMesage] = useState(null)
 
   useEffect(() => {
     phoneService
@@ -57,6 +58,10 @@ function App() {
         .then(data => {
           setPersons(persons.map(p => p.id !== person.id ? p : data))
         })
+        .catch(error => {
+          setErrorMesage(`unable to change number for ${person.name}`)
+          setTimeout(() => setErrorMesage(null), 5000)
+        })
     }
   }
 
@@ -80,6 +85,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Error message={errorMessage} />
       <Success message={successMesage} />
       <Filter persons={persons} />
       <h2>add new</h2>
@@ -99,6 +105,15 @@ const Success = ({ message }) => {
   if (message === null) return null
   return(
     <div className='success'>
+      {message}
+    </div>
+  )
+}
+
+const Error = ({ message }) => {
+  if (message === null) return null
+  return (
+    <div className='error'>
       {message}
     </div>
   )
