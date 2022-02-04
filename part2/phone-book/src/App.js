@@ -80,6 +80,10 @@ function App() {
         console.log(data)
         setPersons(persons.filter(p => p.id !== id))
       })
+      .catch(error => {
+        setErrorMesage(`unable to delete ${person.name}`)
+        setTimeout(() => setErrorMesage(null), 5000)
+      })
   }
 
   return (
