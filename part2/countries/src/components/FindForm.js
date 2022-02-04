@@ -1,6 +1,3 @@
-import { useState } from "react"
-import Countries from "./Countries"
-
 const FindForm = function({ search, onChange }) {
 
   return(
