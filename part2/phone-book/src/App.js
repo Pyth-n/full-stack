@@ -6,7 +6,7 @@ import PersonForm from './components/PersonForm'
 
 function App() {
   const [persons, setPersons] = useState([])
-  const [newName, setNewName] = useState('Ada Lovelace')
+  const [newName, setNewName] = useState('A somebody')
   const [newNumber, setNewNumber] = useState('000-555-9292')
 
   useEffect(() => {
