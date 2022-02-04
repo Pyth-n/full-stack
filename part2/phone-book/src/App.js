@@ -51,6 +51,10 @@ function App() {
   }
 
   const deletePerson = id => {
+    const person = persons.find(p => p.id === id)
+    const result = window.confirm(`Delete ${person.name}?`)
+    if (!result) { return }
+    
     phoneService
       .del(id)
       .then(data => {
