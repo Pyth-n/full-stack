@@ -9,6 +9,7 @@ function App() {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('A somebody')
   const [newNumber, setNewNumber] = useState('000-555-9292')
+  const [successMesage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     phoneService
@@ -39,6 +40,8 @@ function App() {
         .create(personObject)
         .then(data => {
           setPersons(persons.concat(data))
+          setSuccessMessage(`Added '${data.name}' to phone book`)
+          setTimeout(() => setSuccessMessage(null), 5000)
         })
     }
     else {
@@ -77,6 +80,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Success message={successMesage} />
       <Filter persons={persons} />
       <h2>add new</h2>
       <PersonForm 
