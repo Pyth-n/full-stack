@@ -32,7 +32,6 @@ function App() {
       const personObject = {
         name: newName,
         number: newNumber,
-        id: persons.length + 1
       }
 
       phoneService
@@ -42,7 +41,16 @@ function App() {
         })
     }
     else {
-      alert(newName + ' is not available')
+      const person = persons.find(p => p.name.toLowerCase() == newName.toLowerCase())
+
+      const personObject = {
+        ...person,
+        number: newNumber
+      }
+
+      phoneService
+        .update(person.id, personObject)
+        .then(data => console.log(data))
     }
   }
 
