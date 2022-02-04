@@ -6,6 +6,7 @@ import axios from 'axios'
 function App() {
   const [countries, setCountries] = useState([])
   const [results, setResults] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     axios
@@ -16,9 +17,18 @@ function App() {
       })
   }, [])
 
+  const inputSearchHandler = (e) => {
+    setSearch(e.target.value)
+    setResults(countries.filter(country => {
+
+      return country.name.common.toLowerCase().includes(search.toLowerCase())
+    }))
+  }
+
   return (
     <div>
-      <FindForm countries={countries} />
+      {results.length}
+      <FindForm countries={countries} onChange={inputSearchHandler} />
       <Countries countries={countries} />
     </div>
   );
