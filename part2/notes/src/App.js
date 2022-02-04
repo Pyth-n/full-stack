@@ -7,7 +7,7 @@ function App() {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('new note...')
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('some error happened')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const addNote = (event) => {
     event.preventDefault()
@@ -42,9 +42,10 @@ function App() {
       })
       .catch(error => {
         console.log(error)
-        alert(
-          `the note '${note.content}' was already deleted from server`
-        )
+        setErrorMessage(`the note '${note.content}' was already deleted from server`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
         setNotes(notes.filter(note => note.id !== id))
       })
   }
@@ -64,6 +65,7 @@ function App() {
   return (
     <div>
       <h1>Notes</h1>
+      <Notification message={errorMessage} />
       <ul>
         {notesToShow.map(data => 
           <Note key={data.id} note={data} toggleImportance={() => toggleImportanceOf(data.id)} />
