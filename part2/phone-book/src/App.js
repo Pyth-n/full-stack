@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import phoneService from './service/phoneBook'
 import Person from './components/Person'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -10,11 +10,11 @@ function App() {
   const [newNumber, setNewNumber] = useState('000-555-9292')
 
   useEffect(() => {
-    axios
-    .get('http://localhost:3001/persons')
-    .then(res => {
-      setPersons(res.data)
-    })
+    phoneService
+      .getAll()
+      .then(data => {
+        setPersons(data)
+      })
   }, [])
   
   const handleInputNewName = (event) => {
