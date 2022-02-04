@@ -50,7 +50,14 @@ function App() {
     return !persons.some((x) => x.name === name)
   }
 
-  const deletePerson = id => console.log(`deleting ${id}`)
+  const deletePerson = id => {
+    phoneService
+      .del(id)
+      .then(data => {
+        console.log(data)
+        setPersons(persons.filter(p => p.id !== id))
+      })
+  }
 
   return (
     <div>
