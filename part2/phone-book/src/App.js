@@ -50,7 +50,9 @@ function App() {
 
       phoneService
         .update(person.id, personObject)
-        .then(data => console.log(data))
+        .then(data => {
+          setPersons(persons.map(p => p.id !== person.id ? p : data))
+        })
     }
   }
 
