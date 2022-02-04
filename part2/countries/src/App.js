@@ -29,7 +29,7 @@ function App() {
     <div>
       {results.length}
       <FindForm countries={countries} onChange={inputSearchHandler} />
-      <Countries countries={countries} />
+      <Countries countries={results} />
     </div>
   );
 }
