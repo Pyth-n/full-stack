@@ -10,6 +10,7 @@ const Countries = ({ countries }) => {
         countries.map(c => {
           return <Country key={c.name.common}
             name={c.name.common}
+            country={c}
             />
       })}
       {isOnly &&
