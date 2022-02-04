@@ -50,6 +50,8 @@ function App() {
     return !persons.some((x) => x.name === name)
   }
 
+  const deletePerson = id => console.log(`deleting ${id}`)
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -62,7 +64,7 @@ function App() {
         handleInputNewNumber={handleInputNewNumber}
         handleAddName={handleAddName} />
       <h2>Numbers</h2>
-      {persons.map(x => <Person key={x.id} person={x} />)}
+      {persons.map(x => <Person key={x.id} person={x} deletePerson={() => deletePerson(x.id)} />)}
     </div>
   );
 }
