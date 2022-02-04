@@ -57,6 +57,8 @@ function App() {
         .update(person.id, personObject)
         .then(data => {
           setPersons(persons.map(p => p.id !== person.id ? p : data))
+          setSuccessMessage(`Updated ${person.name}'s phone #`)
+          setTimeout(() => setSuccessMessage(null), 5000)
         })
         .catch(error => {
           setErrorMesage(`unable to change number for ${person.name}`)
@@ -79,10 +81,13 @@ function App() {
       .then(data => {
         console.log(data)
         setPersons(persons.filter(p => p.id !== id))
+        setSuccessMessage(`Deleted ${person.name}`)
+        setTimeout(() => setSuccessMessage(null), 5000)
       })
       .catch(error => {
         setErrorMesage(`unable to delete ${person.name}`)
         setTimeout(() => setErrorMesage(null), 5000)
+        setPersons(persons.filter(p => p.id !== id))
       })
   }
 
