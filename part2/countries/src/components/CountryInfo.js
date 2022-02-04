@@ -6,27 +6,21 @@ const CountryInfo = ( { country } ) => {
       <p>population {country.population}</p>
       <h2>languages</h2>
       <ul>
-        {Object.keys(country.languages).map((oneKey, i) => {
-          return (
-            <li key={i}>{country.languages[oneKey]}</li>
-          )
-        })}
+        <Languages country={country} />
       </ul>
       <img src={country.flags.png} />
     </div>
   )
 }
 
-const Languages = ({languages}) => {
-  console.log(languages)
-  const iter = languages.values()
-  const arr = []
-  while (iter) {
-    arr.push(iter.next().value)
-  }
+const Languages = ({country}) => {
   return (
     <>
-      {arr.map(l => <p>{l}</p>)}
+      {Object.keys(country.languages).map((oneKey, i) => {
+          return (
+            <li key={i}>{country.languages[oneKey]}</li>
+          )
+      })}
     </>
   )
 }
