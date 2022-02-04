@@ -62,7 +62,7 @@ function App() {
         handleInputNewNumber={handleInputNewNumber}
         handleAddName={handleAddName} />
       <h2>Numbers</h2>
-      {persons.map(x => <Person key={x.id} name={x.name} number={x.number} />)}
+      {persons.map(x => <Person key={x.id} person={x} />)}
     </div>
   );
 }

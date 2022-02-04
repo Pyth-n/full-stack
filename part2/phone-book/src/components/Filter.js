@@ -22,7 +22,7 @@ const Filter = ({ persons }) => {
           filter shown with <input onChange={handleChange} value={nameFilter}/>
         </form>
         <div>
-          {results.map(person => <Person key={person.id} name={person.name} number={person.number} />)}
+          {results.map(person => <Person key={person.id} person={person} />)}
         </div>
     </div>
   )
