@@ -7,6 +7,12 @@ const getAll = () => {
   return req.then(res => res.data)
 }
 
+const create = (obj) => {
+  const req = axios.post(baseUrl, obj)
+  return req.then(res => res.data)
+}
+
 export default {
   getAll,
+  create
 }

@@ -34,7 +34,12 @@ function App() {
         number: newNumber,
         id: persons.length + 1
       }
-      setPersons(persons.concat(personObject))
+
+      phoneService
+        .create(personObject)
+        .then(data => {
+          setPersons(persons.concat(data))
+        })
     }
     else {
       alert(newName + ' is not available')
