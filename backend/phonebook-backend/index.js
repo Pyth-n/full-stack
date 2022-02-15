@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const PORT = 3001
 
+app.use(express.json())
+
 let data = [
   { 
     "id": 1,
@@ -25,6 +27,12 @@ let data = [
   }
 ]
 
+const getMaxId = () => {
+  const maxId = data.length > 0 ?
+    Math.max(...data.map(p => p.id)) : 0
+  return maxId + 1
+}
+
 app.get('/info', (req, res) => {
   res.send(`Phonebook has info for ${data.length} people <br /><br />${Date()}`)
 })
@@ -46,6 +54,18 @@ app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
   data = data.filter(note => note.id !== id)
   res.json(data)
+})
+
+app.post('/api/persons', (req, res) => {
+  const body = req.body
+  if (!body.name || !body.number) return res.status(400).send('no content')
+  const person = {
+    id: getMaxId(),
+    name: body.name,
+    number: body.number
+  }
+  data = data.concat(person)
+  res.json(person)
 })
 
 app.listen(PORT, (req, res) => console.log(`listening on port ${PORT}`))
