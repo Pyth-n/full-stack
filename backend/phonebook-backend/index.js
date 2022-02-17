@@ -4,6 +4,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const PORT = 3001
 
+const Phonebook = require('./models/phoneBook')
+
 app.use(cors())
 app.use(express.json())
 
@@ -51,7 +53,9 @@ const getMaxId = () => {
 app.get('/info', (req, res) => {
   res.send(`Phonebook has info for ${data.length} people <br /><br />${Date()}`)
 })
-app.get('/api/persons', (req, res) => res.json(data))
+app.get('/api/persons', (req, res) => {
+  Phonebook.find({}).then(pb => res.json(pb))
+})
 app.get('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
 

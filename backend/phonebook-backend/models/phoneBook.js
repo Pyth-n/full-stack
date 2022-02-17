@@ -12,4 +12,12 @@ const phoneBookSchema = new mongoose.Schema({
   number: String
 })
 
+phoneBookSchema.set('toJSON', {
+  transform: (document, retrievedObj) => {
+    retrievedObj.id = retrievedObj._id
+    delete retrievedObj._id
+    delete retrievedObj.__id
+  }
+})
+
 module.exports = new mongoose.model('phonebook', phoneBookSchema)
