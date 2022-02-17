@@ -1,8 +1,8 @@
 const app = require('./app')
 const http = require('http')
 const { PORT } = require('./utils/config')
-const logger = require('./utils/logger')
+const { info } = require('./utils/logger')
 
 const server = http.createServer(app)
 
-server.listen(PORT, () => logger.info(`runnong on port ${PORT}`))
+server.listen(PORT, () => info(`runnong on port ${PORT}`))
