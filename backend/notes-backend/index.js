@@ -1,6 +1,8 @@
-const express = require('express')
-const app = express()
-const config = require('./utils/config')
-const router = require('./app')
-app.use(router)
-app.listen(config.PORT, () => console.log(`Server running on port ${config.PORT}`))
+const app = require('./app')
+const http = require('http')
+const { PORT } = require('./utils/config')
+const logger = require('./utils/logger')
+
+const server = http.createServer(app)
+
+server.listen(PORT, () => logger.info(`runnong on port ${PORT}`))
