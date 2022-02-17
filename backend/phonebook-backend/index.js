@@ -70,9 +70,7 @@ app.get('/api/persons/:id', (req, res) => {
 })
 
 app.delete('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id)
-  data = data.filter(note => note.id !== id)
-  res.json(data)
+  Phonebook.findOneAndDelete({_id: req.params.id}).then(del => res.json(del))
 })
 
 app.post('/api/persons', (req, res) => {
