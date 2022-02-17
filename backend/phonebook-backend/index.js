@@ -39,6 +39,16 @@ app.get('/api/persons/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
+app.put('/api/persons/:id', (req, res) => {
+  const person = {
+    name: req.body.name,
+    number: req.body.number
+  }
+  Phonebook
+    .findByIdAndUpdate(req.params.id, person, {new: true})
+    .then(p => res.json(p))
+})
+
 app.delete('/api/persons/:id', (req, res) => {
   Phonebook.findOneAndDelete({_id: req.params.id}).then(del => res.json(del))
 })
