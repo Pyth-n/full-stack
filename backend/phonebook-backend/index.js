@@ -56,17 +56,16 @@ app.get('/info', (req, res) => {
 app.get('/api/persons', (req, res) => {
   Phonebook.find({}).then(pb => res.json(pb))
 })
-app.get('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id)
-
-  const note = data.find(p => p.id === id)
-
-  if (note) {
-    res.json(note)
-  } else {
-    res.status(404).end()
-  }
-  
+app.get('/api/persons/:id', (req, res, next) => {
+  Phonebook.findById(req.params.id)
+    .then(pb => {
+      if (pb) {
+        res.json(pb)
+      } else {
+        res.status(404).end()
+      }
+    })
+    .catch(err => next(err))
 })
 
 app.delete('/api/persons/:id', (req, res) => {
@@ -83,5 +82,14 @@ app.post('/api/persons', (req, res) => {
   
   person.save().then(savedPb => res.json(savedPb))
 })
+
+const errorHandler = (err, req, res, next) => {
+  console.error(err.message)
+
+  if (err.name === 'CastError') {
+    return res.status(400).send({error: 'malformed id'})
+  }
+  next(err)
+}
 
 app.listen(PORT, (req, res) => console.log(`listening on port ${PORT}`))

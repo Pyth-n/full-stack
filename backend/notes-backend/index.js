@@ -59,11 +59,14 @@ app.post('/api/notes', (req, res) => {
   note.save().then(savedNote => res.json(savedNote))
 })
 
-app.get('/api/notes/:id', (req, res) => {
+app.get('/api/notes/:id', (req, res, next) => {
   Note
     .findById(req.params.id)
-    .then(note => res.json(note))
-    .catch(err => res.json(err))
+    .then(note => {
+      if (note) return res.json(note)
+      return res.status(404).end()
+    })
+    .catch(err => next(err))
 })
 
 app.delete('/api/notes/:id', (req, res) => {
@@ -72,6 +75,15 @@ app.delete('/api/notes/:id', (req, res) => {
   console.log(notes)
   res.status(204).end()
 })
+
+const handleError = (err, req, res, next) => {
+  if (err.name === 'CastError') {
+    return res.json({error: 'malformed id'})
+  }
+  next(err)
+}
+
+app.use(handleError)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT)
