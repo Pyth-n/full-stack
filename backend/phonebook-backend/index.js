@@ -92,4 +92,6 @@ const errorHandler = (err, req, res, next) => {
   next(err)
 }
 
+app.use(errorHandler)
+
 app.listen(PORT, (req, res) => console.log(`listening on port ${PORT}`))
