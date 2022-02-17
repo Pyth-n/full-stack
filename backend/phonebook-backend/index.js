@@ -78,15 +78,12 @@ app.delete('/api/persons/:id', (req, res) => {
 app.post('/api/persons', (req, res) => {
   const body = req.body
   if (!body.name || !body.number) return res.status(400).send('no content')
-  const person = {
-    id: getMaxId(),
+  const person = new Phonebook({
     name: body.name,
     number: body.number
-  }
-  const nameExists = data.find(d => d.name === body.name)
-  if (nameExists) return res.status(400).send('name exists')
-  data = data.concat(person)
-  res.json(person)
+  })
+  
+  person.save().then(savedPb => res.json(savedPb))
 })
 
 app.listen(PORT, (req, res) => console.log(`listening on port ${PORT}`))
