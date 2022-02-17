@@ -2,31 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
-
-const mongoose = require('mongoose')
-require('dotenv').config()
-
-const KEY = process.env.MONGO_KEY
-const url = `mongodb+srv://fullstack:${KEY}@cluster0.dv4cf.mongodb.net/note-app?retryWrites=true&w=majority`
-
-mongoose.connect(url)
-
-const noteSchema = new mongoose.Schema({
-  content: String,
-  date: Date,
-  important: Boolean
-})
-
-noteSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    console.log(returnedObject.id)
-    delete returnedObject._id
-    delete returnedObject.__id
-  }
-})
-
-const Note = mongoose.model('Note', noteSchema)
+const Note = require('./models/note')
 
 app.use(cors())
 app.use(express.static('build'))
