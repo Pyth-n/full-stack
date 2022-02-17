@@ -50,14 +50,13 @@ app.post('/api/notes', (req, res) => {
     })
   }
 
-  const note = {
+  const note = new Note({
     content: body.content,
     important: body.important || false,
-    date: new Date(),
-    id: generateId()
-  }
-  notes = notes.concat(note)
-  res.json(note)
+    date: new Date()
+  })
+  
+  note.save().then(savedNote => res.json(savedNote))
 })
 
 app.get('/api/notes/:id', (req, res) => {
