@@ -1,9 +1,6 @@
-const cors = require('cors')
 const notesRouter = require('express').Router()
 
 const Note = require('../models/note')
-
-notesRouter.use(cors())
 
 notesRouter.get('/', (req, res) => {
   Note.find({}).then(notes => {
@@ -44,14 +41,5 @@ notesRouter.delete('/:id', (req, res) => {
   console.log(notes)
   res.status(204).end()
 })
-
-const handleError = (err, req, res, next) => {
-  if (err.name === 'CastError') {
-    return res.json({error: 'malformed id'})
-  }
-  next(err)
-}
-
-notesRouter.use(handleError)
 
 module.exports = notesRouter
