@@ -1,18 +1,16 @@
 const cors = require('cors')
+const notesRouter = require('express').Router()
 
-const Note = require('./models/note')
+const Note = require('../models/note')
 
-app.use(cors())
-app.use(express.static('build'))
-app.use(express.json())
+notesRouter.use(cors())
 
-app.get('/', (req, res) => res.send('<h1>hello world</h1>'))
-app.get('/api/notes', (req, res) => {
+notesRouter.get('/', (req, res) => {
   Note.find({}).then(notes => {
     res.json(notes)
   })
 })
-app.post('/api/notes', (req, res) => {
+notesRouter.post('/', (req, res) => {
   const body = req.body
 
   if (!body.content) {
@@ -30,7 +28,7 @@ app.post('/api/notes', (req, res) => {
   note.save().then(savedNote => res.json(savedNote))
 })
 
-app.get('/api/notes/:id', (req, res, next) => {
+notesRouter.get('/:id', (req, res, next) => {
   Note
     .findById(req.params.id)
     .then(note => {
@@ -40,7 +38,7 @@ app.get('/api/notes/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-app.delete('/api/notes/:id', (req, res) => {
+notesRouter.delete('/:id', (req, res) => {
   const id = Number(req.params.id)
   notes = notes.filter(note => note.id !== id)
   console.log(notes)
@@ -54,4 +52,6 @@ const handleError = (err, req, res, next) => {
   next(err)
 }
 
-app.use(handleError)
+notesRouter.use(handleError)
+
+module.exports = notesRouter
