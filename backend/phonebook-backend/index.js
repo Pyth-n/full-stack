@@ -21,35 +21,6 @@ app.use(morgan((tokens, req, res) => {
   ].join(' ')
 }))
 
-let data = [
-  { 
-    "id": 1,
-    "name": "Arto Hellas", 
-    "number": "040-123456"
-  },
-  { 
-    "id": 2,
-    "name": "Ada Lovelace", 
-    "number": "39-44-5323523"
-  },
-  { 
-    "id": 3,
-    "name": "Dan Abramov", 
-    "number": "12-43-234345"
-  },
-  { 
-    "id": 4,
-    "name": "Mary Poppendieck", 
-    "number": "39-23-6423122"
-  }
-]
-
-const getMaxId = () => {
-  const maxId = data.length > 0 ?
-    Math.max(...data.map(p => p.id)) : 0
-  return maxId + 1
-}
-
 app.get('/info', (req, res) => {
   res.send(`Phonebook has info for ${data.length} people <br /><br />${Date()}`)
 })
