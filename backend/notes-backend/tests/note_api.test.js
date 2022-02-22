@@ -33,6 +33,11 @@ test('notes are returns as json', async () => {
     .expect('Content-Type', /application\/json/)
 }, 10000)
 
+test('all notes are returned', async () => {
+  const response = await api.get('/api/notes')
+  expect(response.body).toHaveLength(initialNotes.length)
+})
+
 test('there are two notes', async () => {
   const response = await api.get('/api/notes')
 
@@ -43,6 +48,15 @@ test('the first not is about http methods', async () => {
   const response = await api.get('/api/notes')
 
   expect(response.body[0].content).toBe('HTML is easy')
+})
+
+test('a specific note is within the returned notes', async () => {
+  const response = await api.get('/api/notes')
+
+  const contents = response.body.map(r => r.content)
+  expect(contents).toContain(
+    'Browser can execute only Javascript'
+  )
 })
 
 afterAll(() => {
