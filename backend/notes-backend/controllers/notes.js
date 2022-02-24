@@ -22,7 +22,7 @@ notesRouter.post('/', async (req, res) => {
   })
   
   const savedNote = await note.save()
-  res.json(savedNote)
+  res.status(201).json(savedNote)
 })
 
 notesRouter.get('/:id', async (req, res, next) => {
